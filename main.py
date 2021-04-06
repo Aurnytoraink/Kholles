@@ -24,33 +24,34 @@ async def on_ready():
 @client.event
 async def on_voice_state_update(member, before, after):
 
-    if after.channel.id == 827846319422177280:
-        category = after.channel.category
-        if member.nick is None:   name = member.name
-        else:   name = member.nick
+    if after.channel != None:
+        if after.channel.id == 827846319422177280:
+            category = after.channel.category
+            if member.nick is None:   name = member.name
+            else:   name = member.nick
 
 
-        voice = await member.guild.create_voice_channel(f"💬 {name}",user_limit=4,category=category)
-        chat = await member.guild.create_text_channel(f"📝 {name}",category=category)
-        await member.move_to(voice)
+            voice = await member.guild.create_voice_channel(f"💬 {name}",user_limit=4,category=category)
+            chat = await member.guild.create_text_channel(f"📝 {name}",category=category)
+            await member.move_to(voice)
 
-        classes_list.append([voice, chat])
+            classes_list.append([voice, chat])
 
-        await asyncio.sleep(0.5)
+            await asyncio.sleep(0.5)
 
-    elif after.channel.id == 828901360908369962:
-        category = after.channel.category
-        if member.nick is None:   name = member.name
-        else:   name = member.nick
+        elif after.channel.id == 828901360908369962:
+            category = after.channel.category
+            if member.nick is None:   name = member.name
+            else:   name = member.nick
 
-        
-        voice = await member.guild.create_voice_channel(f"💬 TIPE {len(tipe_list)+1}",category=category)
-        chat = await member.guild.create_text_channel(f"📝 TIPE {len(tipe_list)+1}",category=category)
-        await member.move_to(voice)
+            
+            voice = await member.guild.create_voice_channel(f"💬 TIPE {len(tipe_list)+1}",category=category)
+            chat = await member.guild.create_text_channel(f"📝 TIPE {len(tipe_list)+1}",category=category)
+            await member.move_to(voice)
 
-        tipe_list.append([voice, chat])
+            tipe_list.append([voice, chat])
 
-        await asyncio.sleep(0.5)
+            await asyncio.sleep(0.5)
 
     for i in range(len(classes_list)):
             if before.channel == classes_list[i][0]:
